@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Heroe } from '../classes/heroe';
-import { HeroesService } from '../heroes.service';
+import { Heroe } from '../../classes/heroe';
+import { HeroesService } from '../../services/heroes.service';
 import { Router } from '@angular/router';
 
 @Component({

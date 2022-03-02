@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+// import { StoreModule } from '@ngrx/store';
 
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListadoDeHeroesComponent } from './listado-de-heroes/listado-de-heroes.component';
-import { HeroesService } from './heroes.service';
-import { HeroProfileComponent } from './hero-profile/hero-profile.component';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { ModalPollComponent } from './modal-poll/modal-poll.component';
-import { CapitalizePipe } from './capitalize.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ModalPollComponent } from './components/modal-poll/modal-poll.component';
+import { HeroProfileComponent } from './pages/hero-profile/hero-profile.component';
+import { ListadoDeHeroesComponent } from './pages/listado-de-heroes/listado-de-heroes.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { HeroesService } from './services/heroes.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CapitalizePipe } from './capitalize.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+//    StoreModule.forRoot({ })
   ],
   providers: [HeroesService],
   bootstrap: [AppComponent]
