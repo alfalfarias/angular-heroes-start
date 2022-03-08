@@ -1,7 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 
-export const NAME = 'HEORES_FETCH_ONE';
+export const NAME = '[HERO] Loading one';
 export const action = createAction(
     NAME,
-    props<{id: number}>
+    props<{ 
+        id: string,
+    }>()
 );
