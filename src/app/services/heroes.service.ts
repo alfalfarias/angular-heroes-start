@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Heroe } from './classes/heroe';
+import { Heroe } from '../classes/heroe';
 
 @Injectable()
 export class HeroesService {
@@ -27,8 +27,8 @@ export class HeroesService {
   }
 
   getHeroes (nameStartsWith?: string, page?: number) {
-    console.log("TEAMS");
-    console.log(Array.from(this.teams));
+    //console.log("TEAMS");
+    //console.log(Array.from(this.teams));
     if (page || page === 0) {
       this.page = page;
     }
