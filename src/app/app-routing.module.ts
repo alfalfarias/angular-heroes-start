@@ -1,14 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListadoDeHeroesComponent } from './pages/listado-de-heroes/listado-de-heroes.component';
-import { HeroProfileComponent } from './pages/hero-profile/hero-profile.component';
 import { ModalPollComponent } from './components/modal-poll/modal-poll.component';
 
 const routes: Routes = [
-  { path: 'listado-heroes', component: ListadoDeHeroesComponent},
-  { path: 'heroe/:id', component: HeroProfileComponent},
-  { path: 'modal-poll', component: ModalPollComponent},
-  { path: '**', redirectTo: '/listado-heroes'}
+  { 
+    path: 'listado-heroes', 
+    loadChildren: () => import('./pages/listado-de-heroes/listado-de-heroes.module').then(m => m.ListadoDeHeroesModule)
+  },
+  { 
+    path: 'heroe/:id', 
+    loadChildren: () => import('./pages/hero-profile/hero-profile.module').then(m => m.HeroProfileModule)
+  },
+  { 
+    path: 'modal-poll', 
+    component: ModalPollComponent
+  },
+  { 
+    path: '**', 
+    redirectTo: '/listado-heroes'
+  }
 ];
 
 @NgModule({
