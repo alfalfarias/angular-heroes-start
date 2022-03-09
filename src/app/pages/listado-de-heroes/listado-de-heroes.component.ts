@@ -17,7 +17,7 @@ export class ListadoDeHeroesComponent implements OnInit {
   public page: number;
   public perPage: number;
   public total: number;
-  public searchString: string = null;
+  public searchString: string;
   
   public heroes$: Observable<HeroesState>;
 
@@ -36,6 +36,7 @@ export class ListadoDeHeroesComponent implements OnInit {
       this.page = data.page;
       this.perPage = data.perPage;
       this.total = data.totalPages;
+      this.searchString = data.search;
     });
   }
 
