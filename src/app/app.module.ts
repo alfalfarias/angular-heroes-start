@@ -13,7 +13,6 @@ import { ModalPollComponent } from './components/modal-poll/modal-poll.component
 import { HeroProfileComponent } from './pages/hero-profile/hero-profile.component';
 import { ListadoDeHeroesComponent } from './pages/listado-de-heroes/listado-de-heroes.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
-import { HeroesService } from './services/heroes.service';
 import { HeroService } from './services/hero.service';
 import { environment } from '../environments/environment';
 import { ROOT_REDUCERS } from './state/app.state';
@@ -39,7 +38,7 @@ import { UpdateColorEffects } from './state/effects/update-color.effect';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production }),
     EffectsModule.forRoot([LoadAllEffects, LoadOneEffects, UpdateColorEffects])
   ],
-  providers: [HeroesService, HeroService],
+  providers: [HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
