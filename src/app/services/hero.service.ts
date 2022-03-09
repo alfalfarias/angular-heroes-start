@@ -8,61 +8,79 @@ import { HeroesState } from '../state/heroes.reducers';
 
 @Injectable()
 export class HeroService {	
+
 	constructor(private http: HttpClient) { }
   
 	fetchAll(page: number, perPage: number, search?: string): Observable<HeroesState> {
-		const offset: number = page * perPage;
-		const nameStartsWith: string = search ? ('&nameStartsWith=' + search) : '';
-    	const url: string = `${env.api.url}/characters?apikey=${env.api.key}&offset=${offset}${nameStartsWith}`;
-		const response = this.http.get<Hero[]>(url);
-		const data = response
+		const nameStartsWith: string = search ? ('&search=' + search) : '';
+    	const url: string = `${env.api.url}/marvel/heroes?page=${page}&perPage=${perPage}${nameStartsWith}`;
+		const response = this.http.get<Hero[]>(url)
 		.pipe(
 			map((response: any) => {
-				const results: Array<any> = response.data.results;
-
-				const items: Hero[] = results.map(item => {
+				const items: Hero[] = response.items.map(item => {
 					const id: string = item.id;
 					const name: string = item.name;
 					const description: string = item.description;
 					const modified: Date = item.modified;
-					const thumbnail: Object = item.thumbnail;
-					const resourceURI: string = item.resourceURI;
-					const teamColor: string = '';
-					return new Hero(id, name, description, modified, thumbnail, resourceURI, teamColor);
+					const thumbnailURI: string = item.thumbnailURI;
+					const team: string = item.team;
+					const color: string = item.color;
+					return new Hero(id, name, description, modified, thumbnailURI, team, color);
 				});
-				
+
 				const data: HeroesState = {
-					page: page,
-					perPage: perPage,
-					totalPages: response.data.total,
+					page: response.page,
+					perPage: response.perPage,
+					totalPages: response.totalPages,
 					search: search,
 					items: items,
 				}; 
 				return data;
 			})
 		);
-		return data;
+		return response;
 	}
 	
 	fetchOne(id: string): Observable<Hero> {
-    	const url: string = `${env.api.url}/characters/${id}?apikey=${env.api.key}`;
+    	const url: string = `${env.api.url}/marvel/heroes/${id}`;
 		const response = this.http.get<Hero>(url);
 		const data = response
 		.pipe(
 			map((response: any) => {
-				const results: Array<any> = response.data.results;
-				const [item] = results;
+				const item = response;
 
 				const id: string = item.id;
 				const name: string = item.name;
 				const description: string = item.description;
 				const modified: Date = item.modified;
-				const thumbnail: Object = item.thumbnail;
-				const resourceURI: string = item.resourceURI;
-				const teamColor: string = '';
-				
-				const hero: Hero = new Hero(id, name, description, modified, thumbnail, resourceURI, teamColor);
-				return hero;
+				const thumbnailURI: string = item.thumbnailURI;
+				const team: string = item.team;
+				const color: string = item.color;
+
+				const data: Hero = new Hero(id, name, description, modified, thumbnailURI, team, color);
+				return data;
+			})
+		);
+		return data;
+	}
+	
+	updateColor(id: string, team: string, color: string): Observable<Hero> {
+    	const url: string = `${env.api.url}/hero/heroes/${id}/color`;
+		const response = this.http.post<Hero>(url, {
+			team: team,
+			color: color,
+		});
+		const data = response
+		.pipe(
+			map((response: any) => {
+				const item = response;
+
+				const id: string = item.id;
+				const team: string = item.team;
+				const color: string = item.color;
+
+				const data: Hero = new Hero(id, null, null, null, null, team, color);
+				return data;
 			})
 		);
 		return data;

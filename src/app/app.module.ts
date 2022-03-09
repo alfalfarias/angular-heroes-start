@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { ROOT_REDUCERS } from './state/app.state';
 import { LoadAllEffects } from './state/effects/load-all.effect';
 import { LoadOneEffects } from './state/effects/load-one.effect';
+import { UpdateColorEffects } from './state/effects/update-color.effect';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { LoadOneEffects } from './state/effects/load-one.effect';
     FormsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production }),
-    EffectsModule.forRoot([LoadAllEffects, LoadOneEffects])
+    EffectsModule.forRoot([LoadAllEffects, LoadOneEffects, UpdateColorEffects])
   ],
   providers: [HeroesService, HeroService],
   bootstrap: [AppComponent]

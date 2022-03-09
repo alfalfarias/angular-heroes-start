@@ -5,3 +5,7 @@ export { action as loadHeroesErrorAction } from './actions/load-all-error.action
 export { action as loadHeroAction } from './actions/load-one.action';
 export { action as loadHeroSuccessAction } from './actions/load-one-success.action';
 export { action as loadHeroErrorAction } from './actions/load-one-error.action';
+
+export { action as updateColorAction } from './actions/update-color.action';
+export { action as updateColorSuccessAction } from './actions/update-color-success.action';
+export { action as updateColorErrorAction } from './actions/update-color-error.action';

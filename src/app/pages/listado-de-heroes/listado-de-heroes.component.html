@@ -6,7 +6,7 @@
     </div>
   </form>
   <div *ngFor="let heroe of (heroes$ | async).items; let i = index;" class="col-xs-12 col-sm-6 col-md-3">
-    <a (click)="go_to(heroe.id)" class="hero-entry" [style.border-color]="" [style.background-image]="'url(' + heroe.thumbnail.path + '.' + heroe.thumbnail.extension + ')'">
+    <a (click)="go_to(heroe.id)" class="hero-entry" [style.border-color]="heroe.color" [style.background-image]="'url(' + heroe.thumbnailURI + ')'">
       <span>{{heroe.name}}</span>
     </a>
   </div>

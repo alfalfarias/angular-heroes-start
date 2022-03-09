@@ -31,7 +31,8 @@ export const reducer = createReducer(
     on(loadHeroesSuccessAction, (state: HeroesState, {payload}) => {
         return { ...state, ...payload };
     }),
-    on(loadHeroesErrorAction, (state: HeroesState) => {
+    on(loadHeroesErrorAction, (state: HeroesState, {payload}) => {
+        console.log(payload);
         return { ...state };
     })
 );

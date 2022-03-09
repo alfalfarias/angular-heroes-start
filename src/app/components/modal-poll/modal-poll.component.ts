@@ -13,13 +13,9 @@ export class ModalPollComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  
   send_team(team: string): void {
-    console.log("Im in child: ");
-    console.log(team);
     this.setTeam.emit(team);
     this.toggle_modal();
   }

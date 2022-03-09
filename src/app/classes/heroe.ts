@@ -1,11 +1,12 @@
+import { GROUP_COLORS } from './group-colors';
 export class Heroe {
     constructor(
         public id: string,
         public name: string,
         public description: string,
         public modified: Date,
-        public thumbnail: Object,
-        public resourceURI: string,
-        public teamColor: string
-    ) {}
+        public thumbnailURI: string,
+        public team: string,
+        public color: string
+    ) {  }
 }
